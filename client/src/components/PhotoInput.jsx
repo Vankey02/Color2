@@ -22,14 +22,10 @@ export default function PhotoInput({ setImageError }) {
       },
       function (result) {
         if (result != null) {
-          console.log("pass");
           if (result.codeResult) {
-            console.log("result", result.codeResult.code);
-
             if (result.codeResult.code.toString().length === 11) {
               QRCode.toDataURL(result.codeResult.code)
                 .then((url) => {
-                  console.log("QRcodeURL", url);
                   setDownload(url);
                   setStage((prevStage) => prevStage + 1);
                 })
@@ -49,7 +45,6 @@ export default function PhotoInput({ setImageError }) {
           }
         } else {
           console.log("not detected");
-
           setImageError((val) => !val);
         }
       }
